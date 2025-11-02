@@ -17,6 +17,7 @@ import (
 )
 
 var (
+	prefix               string
 	caOutputPath         string
 	caCommonName         string
 	caOrganization       string
@@ -31,6 +32,7 @@ var (
 )
 
 func init() {
+	flag.StringVar(&prefix, "prefix", "ca", "The prefix of the generated CA certificate and pem files")
 	flag.StringVar(&caOutputPath, "output-path", "./", "The path to output the CA certificate")
 	flag.StringVar(&caCommonName, "common-name", "", "The common name of the CA")
 	flag.StringVar(&caOrganization, "organization", "", "The organization of the CA")
@@ -151,6 +153,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	os.WriteFile(path.Join(caOutputPath, "ca.pem"), []byte(fmt.Sprintf("%s\n%s", caPEM.String(), caPrivateKeyPEM.String())), 0644)
-	os.WriteFile(path.Join(caOutputPath, "ca.crt"), pem.Certificate[0], 0644)
+	os.WriteFile(path.Join(caOutputPath, fmt.Sprintf("%s.pem", prefix)), []byte(fmt.Sprintf("%s\n%s", caPEM.String(), caPrivateKeyPEM.String())), 0644)
+	os.WriteFile(path.Join(caOutputPath, fmt.Sprintf("%s.crt", prefix)), pem.Certificate[0], 0644)
 }
