@@ -46,46 +46,6 @@ func init() {
 	flag.IntVar(&caDaysToExpire, "days-to-expire", 365, "The number of days to expire the CA")
 	flag.Parse()
 
-	if caCommonName == "" {
-		fmt.Println("Error: ca-common-name is required")
-		os.Exit(1)
-	}
-
-	if caOrganization == "" {
-		fmt.Println("Error: ca-organization is required")
-		os.Exit(1)
-	}
-
-	if caOrganizationalUnit == "" {
-		fmt.Println("Error: ca-organizational-unit is required")
-		os.Exit(1)
-	}
-
-	if caAddress == "" {
-		fmt.Println("Error: ca-address is required")
-		os.Exit(1)
-	}
-
-	if caLocality == "" {
-		fmt.Println("Error: ca-locality is required")
-		os.Exit(1)
-	}
-
-	if caProvince == "" {
-		fmt.Println("Error: ca-province is required")
-		os.Exit(1)
-	}
-
-	if caPostalCode == "" {
-		fmt.Println("Error: ca-postal-code is required")
-		os.Exit(1)
-	}
-
-	if caCountry == "" {
-		fmt.Println("Error: ca-country is required")
-		os.Exit(1)
-	}
-
 	if caKeySize <= 1024 {
 		fmt.Println("Error: ca-key-size must be greater than 1024")
 		os.Exit(1)

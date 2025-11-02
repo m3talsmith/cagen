@@ -7,7 +7,7 @@ This is a certificate generator. It generates a cert and pem for you instead of 
 `go build .`
 
 ## Run
-`./cagen -output-path <output path> -common-name <certificate name> -organization <organization> -organizational-unit <unit> -address <address> -locality <city> -province <state or province> -postal-code <postal code> -country <country>`
+`./cagen`
 
 ## Options
 
