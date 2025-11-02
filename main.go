@@ -27,6 +27,7 @@ var (
 	caProvince           string
 	caPostalCode         string
 	caCountry            string
+	caEmail              string
 	caKeySize            int
 	caDaysToExpire       int
 )
@@ -42,6 +43,7 @@ func init() {
 	flag.StringVar(&caProvince, "province", "", "The province of the CA")
 	flag.StringVar(&caPostalCode, "postal-code", "", "The postal code of the CA")
 	flag.StringVar(&caCountry, "country", "", "The country of the CA")
+	flag.StringVar(&caEmail, "email", "", "The email of the CA")
 	flag.IntVar(&caKeySize, "key-size", 2048, "The key size of the CA")
 	flag.IntVar(&caDaysToExpire, "days-to-expire", 365, "The number of days to expire the CA")
 	flag.Parse()
@@ -65,7 +67,8 @@ func init() {
 func main() {
 	t := time.Now()
 	ca := x509.Certificate{
-		SerialNumber: big.NewInt(int64(t.Year())),
+		EmailAddresses: []string{caEmail},
+		SerialNumber:   big.NewInt(int64(t.Year())),
 		Subject: pkix.Name{
 			CommonName:         caCommonName,
 			Organization:       []string{caOrganization},
